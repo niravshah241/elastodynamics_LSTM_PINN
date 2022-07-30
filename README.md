@@ -35,8 +35,9 @@ This code has been developed by [Nirav Vasant Shah] [email](mailto:niravshahcola
 	@misc{elastodynamics_LSTM_PINN,
 	key          = {ElastodynamicsLSTMPINN},
 	author       = {Shah, N.V.},
-	title        = {{ElastodynamicsLSTMPINN} -- {LSTM PINN for Elastodynamics} {Version 0.1}},
+	title        = {{Long Short Term Memory based Physics Informed Neural Network for elastodynamics problem, Version 0.1}},
 	month        = July,
+	url          = {https://github.com/niravshah241/elastodynamics_LSTM_PINN.git},
 	year         = 2022
 	}
 
