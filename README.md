@@ -24,7 +24,7 @@ git clone https://github.com/niravshah241/elastodynamics_LSTM_PINN.git
 
 ### 3. Problem statement
 
-
+![alt text](https://github.com/niravshah241/elastodynamics_LSTM_PINN/blob/main/domain.png)
 
 ### 4. Authors and contributors
 
