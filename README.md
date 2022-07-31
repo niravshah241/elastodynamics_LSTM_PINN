@@ -26,6 +26,8 @@ git clone https://github.com/niravshah241/elastodynamics_LSTM_PINN.git
 
 ![alt text](https://github.com/niravshah241/elastodynamics_LSTM_PINN/blob/main/domain.png)
 
+https://user-images.githubusercontent.com/18644277/182047892-10b27e0f-ca49-464e-bfc3-479a046d73fc.mp4
+
 ### 4. Authors and contributors
 
 This code has been developed by [Nirav Vasant Shah] [email](mailto:niravshahcolab@gmail.com).
