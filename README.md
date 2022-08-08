@@ -44,7 +44,7 @@ $$\text{(Zero displacement) On} \ \gamma_{-}: \overrightarrow{u} = \overrightarr
 $$\text{(Restricted displacement) On} \ \gamma_{+}: \overrightarrow{u} \cdot \overrightarrow{n} = 0 \ , \ \overrightarrow{\sigma}_s = \overrightarrow{0} \ , \ \text{in} \ \omega \times (0,T] \ .$$
 
 The **stress tensor** $\overline{\overline{\sigma}}$ and **strain tensor** $\overline{\overline{\varepsilon}}$ are given as:
-$$\overline{\overline{\sigma}} = \lambda tr(\overline{\overline{\varepsilon}}) \overline{\overline{I}} + 2 \mu \overline{\overline{\varepsilon}} \ , \ \overline{\overline{\varepsilon}} = \frac{\left(\nabla \overrightarrow{u} + \nabla \overrightarrow{u}^T \right)}{2} \ .$$
+$$\overline{\overline{\sigma}} (\overrightarrow{u}) = \lambda tr(\overline{\overline{\varepsilon}}) \overline{\overline{I}} + 2 \mu \overline{\overline{\varepsilon}} \ , \ \overline{\overline{\varepsilon}} (\overrightarrow{u}) = \frac{\left(\nabla \overrightarrow{u} + \nabla \overrightarrow{u}^T \right)}{2} \ .$$
 
 The corresponding **weak form** can be expressed as, find $\overrightarrow{u} \in \mathbb{V}$ such that: 
 $$m(\overrightarrow{\ddot{u}},\overrightarrow{v}) + c(\overrightarrow{\dot{u}},\overrightarrow{v}) + k(\overrightarrow{u},\overrightarrow{v}) = l(\overrightarrow{v}) \ , \ \forall \overrightarrow{v} \in \mathbb{V} \ , $$
