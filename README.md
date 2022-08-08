@@ -94,9 +94,9 @@ $$\text{Total energy} \ E_{tot} = E_{elas} + E_{kin} + E_{damp} + E_{ext} \ .$$
 
 $\eta_m = 0 , \eta_k = 0 , \alpha_f = 0 \ , \alpha_m = 0 \ , \ \gamma = \frac{1}{2} + \alpha_f - \alpha_m \ , \ \beta = \frac{(\gamma+0.5)^2}{4}$
 
-* Displacement evolution
+* **Displacement evolution**
 
-
+![Alt Text](https://github.com/niravshah241/elastodynamics_LSTM_PINN/blob/main/solution_field/displacement_evolution.gif)
 
 | Energy evolution | Von Mises stress evolution |
 | ------------- | ------------- |
