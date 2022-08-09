@@ -58,13 +58,13 @@ $$m(\overrightarrow{\ddot{u}},\overrightarrow{v}) = \int_{\omega} \rho \overrigh
 $$k(\overrightarrow{u},\overrightarrow{v}) = \int_{\omega} \overline{\overline{\sigma}} : \overline{\overline{\varepsilon}} dx \ , $$
 $$l(\overrightarrow{v}) = \int_{\omega} \rho \overrightarrow{b} \cdot \overrightarrow{v} dx + \int_{\gamma_{sf} \cup \gamma_{out} \cup \gamma_{-}} \left(\overline{\overline{\sigma}} \cdot \overrightarrow{n}\right) \cdot \overrightarrow{v} ds$$
 
-The damping term $c(\overrightarrow{\dot{u}},\overrightarrow{v})$ is chosen as linear combination of the mass matrix and the stiffness matrix (Rayleigh damping).
+The **damping term** $c(\overrightarrow{\dot{u}},\overrightarrow{v})$ is chosen as linear combination of the mass matrix and the stiffness matrix (Rayleigh damping).
 
 The **discrete form** of the equation can be written as:
 
 $$[M] \lbrace \overrightarrow{\ddot{u}} \rbrace_{n+1-\alpha_m} + [C] \lbrace \overrightarrow{\dot{u}} \rbrace_{n+1-\alpha_f} + [K] \lbrace \overrightarrow{u} \rbrace_{n+1-\alpha_m} = F({t}_{n+1-\alpha_f}) \ ,$$
 
-$$\text{Rayleigh damping with specified coefficients $\eta_m$ and $\eta_k$}[C] = \eta_m [M] + \eta_k [K]$$
+Rayleigh damping with specified coefficients $\eta_m$ and $\eta_k$: $[C] = \eta_m [M] + \eta_k [K]$
 
 $$t_0=0,t_1,\ldots,t_N=T \ , \ \Delta t = \frac{T}{(N)} \ ,$$
 
