@@ -32,7 +32,7 @@ Above equation is solved using **Finite Element Method** in space and **generali
 
 $$E=E_{i} \ , \ \nu = \nu_{i} \ , \ \lambda = \lambda_{i} = \frac{E_{i} \nu_{i}}{(1 + \nu_{i})(1 - 2 \nu_{i})} \ , \ \mu_{i} = \frac{E_{i}}{2(1+\nu_{i})} \ \text{for} \ x \in \omega_{i} \.$$
 
-The **stress tensor** $\overline{\overline{\sigma}}$ and **strain tensor** $\overline{\overline{\varepsilon}}$ are given as:
+The **stress tensor** $\overline{\overline{\sigma}}$ and the **strain tensor** $\overline{\overline{\varepsilon}}$ are given as:
 
 $$\overline{\overline{\sigma}} (\overrightarrow{u}) = \lambda tr(\overline{\overline{\varepsilon}}) \overline{\overline{I}} + 2 \mu \overline{\overline{\varepsilon}} \ , \ \overline{\overline{\varepsilon}} (\overrightarrow{u}) = \frac{\left(\nabla \overrightarrow{u} + \nabla \overrightarrow{u}^T \right)}{2} \ .$$
 
