@@ -28,7 +28,7 @@ The domain is divided into $7$ non-overlapping subdomains: $\bar{\omega} = \bigc
 $$\rho \overrightarrow{\ddot{u}} = \nabla \cdot \overline{\overline{\sigma}} + \rho \overrightarrow{b} \ , \ \overrightarrow{\dot{u}} = \frac{\partial \overrightarrow{u}}{\partial t} \ , \ \overrightarrow{\ddot{u}} = \frac{\partial^2 \overrightarrow{u}}{\partial t^2} \ \text{in} \ \omega \times (0,\mathcal{T}] \.$$
 ![alt text](https://github.com/niravshah241/elastodynamics_LSTM_PINN/blob/main/domain.png)
 \
-Above equation is solved using **Finite Element Method** in space and **generalised-** $\alpha$ **method** in time to compute the displacement field $\overrightarrow{u}(x,t)$ at given point $x$ and time $t$. The material properties (Lam\'e parameters $\lambda,\mu$ or Young modulus $E$ and Poisson ratio $\nu$) vary across each subdomain characterising different material constituting the subdomain, i.e.:
+Above equation is solved using **Finite Element Method** in space and **generalised-**$\alpha$ **method** in time to compute the displacement field $\overrightarrow{u}(x,t)$ at given point $x$ and time $t$. The material properties (Lam\'e parameters $\lambda,\mu$ or Young modulus $E$ and Poisson ratio $\nu$) vary across each subdomain characterising different material constituting the subdomain, i.e.:
 
 $$E=E_{i} \ , \ \nu = \nu_{i} \ , \ \lambda = \lambda_{i} = \frac{E_{i} \nu_{i}}{(1 + \nu_{i})(1 - 2 \nu_{i})} \ , \ \mu_{i} = \frac{E_{i}}{2(1+\nu_{i})} \ \text{for} \ x \in \omega_{i} \.$$
 
@@ -36,7 +36,7 @@ The **stress tensor** $\overline{\overline{\sigma}}$ and the **strain tensor** $
 
 $$\overline{\overline{\sigma}} (\overrightarrow{u}) = \lambda tr(\overline{\overline{\varepsilon}}) \overline{\overline{I}} + 2 \mu \overline{\overline{\varepsilon}} \ , \ \overline{\overline{\varepsilon}} (\overrightarrow{u}) = \frac{\left(\nabla \overrightarrow{u} + \nabla \overrightarrow{u}^T \right)}{2} \ .$$
 
-The **normal force** $\sigma_n$ and **tangential force** $\overrightarrow{\sigma_t}$ defined by:
+The **normal force** $\sigma_n$ and the **tangential force** $\overrightarrow{\sigma_t}$ are defined by:
 
 $$\sigma_n = (\overline{\overline{\sigma}} \overrightarrow{n})\cdot \overrightarrow{n} \ , \ \overrightarrow{\sigma}_t = \overline{\overline{\sigma}} \overrightarrow{n} - \sigma_n \overrightarrow{n} \ .$$
 
@@ -66,13 +66,11 @@ $$k(\overrightarrow{u},\overrightarrow{v}) = \int_{\omega} \overline{\overline{\
 
 $$l(\overrightarrow{v}) = \int_{\omega} \rho \overrightarrow{b} \cdot \overrightarrow{v} dx + \int_{\gamma_{sf} \cup \gamma_{out} \cup \gamma_{-}} \left(\overline{\overline{\sigma}} \cdot \overrightarrow{n}\right) \cdot \overrightarrow{v} ds$$
 
-The **damping term** $c(\overrightarrow{\dot{u}},\overrightarrow{v})$ is chosen as linear combination of the mass matrix and the stiffness matrix (Rayleigh damping).
-
-The **discrete form** of the equation can be written as:
+The **damping term** $c(\overrightarrow{\dot{u}},\overrightarrow{v})$ is chosen as linear combination of the mass matrix and the stiffness matrix (Rayleigh damping). The **discrete form** of the equation can be written as:
 
 $$[M] \lbrace \overrightarrow{\ddot{u}} \rbrace_{n+1-\alpha_m} + [C] \lbrace \overrightarrow{\dot{u}} \rbrace_{n+1-\alpha_f} + [K] \lbrace \overrightarrow{u} \rbrace_{n+1-\alpha_m} = F({t}_{n+1-\alpha_f}) \ ,$$
 
-Rayleigh damping with specified coefficients $\eta_m$ and $\eta_k$: $[C] = \eta_m [M] + \eta_k [K]$
+Rayleigh damping with specified coefficients $\eta_m$ and $\eta_k:$ $[C] = \eta_m [M] + \eta_k [K]$
 
 $$t_0=0,t_1,\ldots,t_N=\mathcal{T} \ , \ \Delta t = \frac{\mathcal{T}}{(N)} \ ,$$
 
@@ -88,7 +86,7 @@ $$\text{Elastic energy} \ E_{elas}(t) = \int_{\omega} \frac{1}{2} \overline{\ove
 
 $$\text{Kinetic energy} \ E_{kin}(t) = \int_{\omega} \frac{1}{2} \rho \overrightarrow{\dot{u}} \overrightarrow{\dot{u}} dx \ ,$$
 
-The energy transfer into or out of the system till time $\mathcal{T}$ is given by:
+The energy transfer into or out of the system is given by:
 
 $$\text{Damping energy} \ E_{damp} = \int\limits_{0}^{\mathcal{T}} c(\dot{\overrightarrow{u}},\dot{\overrightarrow{u}}) dt \ ,$$
 
