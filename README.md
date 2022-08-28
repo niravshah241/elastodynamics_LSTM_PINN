@@ -23,39 +23,47 @@ git clone https://github.com/niravshah241/elastodynamics_LSTM_PINN.git
 ```
 
 ### 3. Problem statement
-The domain is divided into $7$ non-overlapping subdomains: $\bar{\omega} = \bigcup\limits_{i=1}^{7} \bar{\omega}_{i}$.
 
+The domain is divided into $7$ non-overlapping subdomains: $\bar{\omega} = \bigcup\limits_{i=1}^{7} \bar{\omega}_{i}$. The **balance of linear momentum** in strong form for a given source term $\overrightarrow{b}$ is given by:
+$$\rho \overrightarrow{\ddot{u}} = \nabla \cdot \overline{\overline{\sigma}} + \rho \overrightarrow{b} \ , \ \overrightarrow{\dot{u}} = \frac{\partial \overrightarrow{u}}{\partial t} \ , \ \overrightarrow{\ddot{u}} = \frac{\partial^2 \overrightarrow{u}}{\partial t^2} \ \text{in} \ \omega \times (0,\mathcal{T}] \.$$
 ![alt text](https://github.com/niravshah241/elastodynamics_LSTM_PINN/blob/main/domain.png)
+\
+Above equation is solved using **Finite Element Method** in space and **generalised-** $\alpha$ **method** in time to compute the displacement field $\overrightarrow{u}(x,t)$ at given point $x$ and time $t$. The material properties (Lam\'e parameters $\lambda,\mu$ or Young modulus $E$ and Poisson ratio $\nu$) vary across each subdomain characterising different material constituting the subdomain, i.e.:
 
-The **balance of linear momentum** in strong form for a given source term $\overrightarrow{b}$ is given by:
-$$\rho \overrightarrow{\ddot{u}} = \nabla \cdot \overline{\overline{\sigma}} + \rho \overrightarrow{b} \ , \ \overrightarrow{\dot{u}} = \frac{\partial \overrightarrow{u}}{\partial t} \ , \ \overrightarrow{\ddot{u}} = \frac{\partial^2 \overrightarrow{u}}{\partial t^2} \ \text{in} \ \omega \times (0,T].$$
-Above equation is solved using **Finite Element Method** in space and **generalised-**$\alpha$ **method** in time to compute the displacement field $\overrightarrow{u}(x,t)$ at given point $x$ and time $t$. The material properties (Lam\'e parameters $\lambda,\mu$ or Young modulus $E$ and Poisson ratio $\nu$) vary across each subdomain characterising different material constituting the subdomain, i.e.:
-$$E=E_{i} \ , \ \nu = \nu_{i} \ , \ \lambda = \lambda_{i} = \frac{E_{i} \nu_{i}}{(1 + \nu_{i})(1 - 2 \nu_{i})} \ , \ \mu_{i} = \frac{E_{i}}{2(1+\nu_{i})} \ \text{for} \ x \in \omega_{i}.$$
+$$E=E_{i} \ , \ \nu = \nu_{i} \ , \ \lambda = \lambda_{i} = \frac{E_{i} \nu_{i}}{(1 + \nu_{i})(1 - 2 \nu_{i})} \ , \ \mu_{i} = \frac{E_{i}}{2(1+\nu_{i})} \ \text{for} \ x \in \omega_{i} \.$$
 
 The **stress tensor** $\overline{\overline{\sigma}}$ and **strain tensor** $\overline{\overline{\varepsilon}}$ are given as:
+
 $$\overline{\overline{\sigma}} (\overrightarrow{u}) = \lambda tr(\overline{\overline{\varepsilon}}) \overline{\overline{I}} + 2 \mu \overline{\overline{\varepsilon}} \ , \ \overline{\overline{\varepsilon}} (\overrightarrow{u}) = \frac{\left(\nabla \overrightarrow{u} + \nabla \overrightarrow{u}^T \right)}{2} \ .$$
 
 The **normal force** $\sigma_n$ and **tangential force** $\overrightarrow{\sigma_t}$ defined by:
+
 $$\sigma_n = (\overline{\overline{\sigma}} \overrightarrow{n})\cdot \overrightarrow{n} \ , \ \overrightarrow{\sigma}_t = \overline{\overline{\sigma}} \overrightarrow{n} - \sigma_n \overrightarrow{n} \ .$$
 
 The **Boundary conditions** are given by:
-$$\text{(Hydrostatic pressure) On} \ \gamma_{sf}: \overline{\overline{\sigma}} \cdot \overrightarrow{n} = -p(t) \overrightarrow{n} \ \text{in} \ \omega \times (0,T] \ ,$$
 
-$$\text{(No force) On} \ \gamma_{out}: \overline{\overline{\sigma}} \cdot \overrightarrow{n} = \overrightarrow{0} \ \text{in} \ \omega \times (0,T] \ ,$$
+$$\text{(Hydrostatic pressure) On} \ \gamma_{sf}: \overline{\overline{\sigma}} \cdot \overrightarrow{n} = -p(t) \overrightarrow{n} \ \text{in} \ \omega \times (0,\mathcal{T}] \ ,$$
 
-$$\text{(Symmetry boundary) On} \ \gamma_{s}: \overrightarrow{u} \cdot \overrightarrow{n} = 0 \ , \ \overrightarrow{\sigma}_t = \overrightarrow{0} \ , \ \text{in} \ \omega \times (0,T] \ ,$$
+$$\text{(No force) On} \ \gamma_{out}: \overline{\overline{\sigma}} \cdot \overrightarrow{n} = \overrightarrow{0} \ \text{in} \ \omega \times (0,\mathcal{T}] \ ,$$
 
-$$\text{(Zero displacement) On} \ \gamma_{-}: \overrightarrow{u} = \overrightarrow{0} \ \text{in} \ \omega \times (0,T] \ ,$$
+$$\text{(Symmetry boundary) On} \ \gamma_{s}: \overrightarrow{u} \cdot \overrightarrow{n} = 0 \ , \ \overrightarrow{\sigma}_t = \overrightarrow{0} \ , \ \text{in} \ \omega \times (0,\mathcal{T}] \ ,$$
 
-$$\text{(Restricted displacement) On} \ \gamma_{+}: \overrightarrow{u} \cdot \overrightarrow{n} = 0 \ , \ \overrightarrow{\sigma}_t = \overrightarrow{0} \ , \ \text{in} \ \omega \times (0,T] \ .$$
+$$\text{(Zero displacement) On} \ \gamma_{-}: \overrightarrow{u} = \overrightarrow{0} \ \text{in} \ \omega \times (0,\mathcal{T}] \ ,$$
+
+$$\text{(Restricted displacement) On} \ \gamma_{+}: \overrightarrow{u} \cdot \overrightarrow{n} = 0 \ , \ \overrightarrow{\sigma}_t = \overrightarrow{0} \ , \ \text{in} \ \omega \times (0,\mathcal{T}] \ .$$
 
 The **initial conditions** correspond to the body at continuous rest:
+
 $$\overrightarrow{u} = \overrightarrow{0} \ , \overrightarrow{\dot{u}} = \overrightarrow{0} \ , \ \overrightarrow{\ddot{u}} = \overrightarrow{0} \ \text{in} \ \omega \times {0} \ .$$
 
 The corresponding **weak form** can be expressed as, find $\overrightarrow{u} \in \mathbb{V}$ such that: 
+
 $$m(\overrightarrow{\ddot{u}},\overrightarrow{v}) + c(\overrightarrow{\dot{u}},\overrightarrow{v}) + k(\overrightarrow{u},\overrightarrow{v}) = l(\overrightarrow{v}) \ , \ \forall \overrightarrow{v} \in \mathbb{V} \ ,$$
+
 $$m(\overrightarrow{\ddot{u}},\overrightarrow{v}) = \int_{\omega} \rho \overrightarrow{\ddot{u}} \cdot \overrightarrow{v} dx \ , $$
+
 $$k(\overrightarrow{u},\overrightarrow{v}) = \int_{\omega} \overline{\overline{\sigma}} : \overline{\overline{\varepsilon}} dx \ , $$
+
 $$l(\overrightarrow{v}) = \int_{\omega} \rho \overrightarrow{b} \cdot \overrightarrow{v} dx + \int_{\gamma_{sf} \cup \gamma_{out} \cup \gamma_{-}} \left(\overline{\overline{\sigma}} \cdot \overrightarrow{n}\right) \cdot \overrightarrow{v} ds$$
 
 The **damping term** $c(\overrightarrow{\dot{u}},\overrightarrow{v})$ is chosen as linear combination of the mass matrix and the stiffness matrix (Rayleigh damping).
@@ -66,7 +74,7 @@ $$[M] \lbrace \overrightarrow{\ddot{u}} \rbrace_{n+1-\alpha_m} + [C] \lbrace \ov
 
 Rayleigh damping with specified coefficients $\eta_m$ and $\eta_k$: $[C] = \eta_m [M] + \eta_k [K]$
 
-$$t_0=0,t_1,\ldots,t_N=T \ , \ \Delta t = \frac{T}{(N)} \ ,$$
+$$t_0=0,t_1,\ldots,t_N=\mathcal{T} \ , \ \Delta t = \frac{\mathcal{T}}{(N)} \ ,$$
 
 $$X_{n+1-\alpha} = (1 - \alpha) X_{n+1} + \alpha X_n \,$$
 
@@ -80,11 +88,11 @@ $$\text{Elastic energy} \ E_{elas}(t) = \int_{\omega} \frac{1}{2} \overline{\ove
 
 $$\text{Kinetic energy} \ E_{kin}(t) = \int_{\omega} \frac{1}{2} \rho \overrightarrow{\dot{u}} \overrightarrow{\dot{u}} dx \ ,$$
 
-The energy transfer into or out of the system till time $T$ is given by:
+The energy transfer into or out of the system till time $\mathcal{T}$ is given by:
 
-$$\text{Damping energy} \ E_{damp} = \int\limits_{0}^{T} c(\dot{\overrightarrow{u}},\dot{\overrightarrow{u}}) dt \ ,$$
+$$\text{Damping energy} \ E_{damp} = \int\limits_{0}^{\mathcal{T}} c(\dot{\overrightarrow{u}},\dot{\overrightarrow{u}}) dt \ ,$$
 
-$$\text{External work done on the system} \ E_{ext} = \int\limits_{0}^{T} l(\overrightarrow{u}) dt \ .$$
+$$\text{External work done on the system} \ E_{ext} = \int\limits_{0}^{\mathcal{T}} l(\overrightarrow{u}) dt \ .$$
 
 The total energy of the system is the sum of all energies:
 
@@ -92,7 +100,7 @@ $$\text{Total energy} \ E_{tot} = E_{elas} + E_{kin} + E_{damp} + E_{ext} \ .$$
 
 ### 4. Numerical results
 
-$\eta_m = 0 , \eta_k = 0 , \alpha_f = 0 \ , \alpha_m = 0 \ , \ \gamma = \frac{1}{2} + \alpha_f - \alpha_m \ , \ \beta = \frac{(\gamma+0.5)^2}{4}$
+$$\eta_m = 0 , \eta_k = 0 , \alpha_f = 0 \ , \alpha_m = 0 \ , \ \gamma = \frac{1}{2} + \alpha_f - \alpha_m \ , \ \beta = \frac{(\gamma+0.5)^2}{4}$$
 
 * **Displacement evolution**
 
